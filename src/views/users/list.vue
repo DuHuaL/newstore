@@ -47,7 +47,7 @@ export default {
   methods: {
     loadData() {
       this.$http
-        .get('http://localhost:3000/heroes')
+        .get('/heroes')
         .then(res => {
           if (res.status === 200) {
             this.list = res.data;
@@ -62,7 +62,7 @@ export default {
         return;
       }
       this.$http
-        .delete(`http://localhost:3000/heroes/${id}`)
+        .delete(`/heroes/${id}`)
         .then(res => {
           if (res.status === 200) {
             this.loadData();
