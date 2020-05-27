@@ -8,7 +8,15 @@ import router from './router';
 import 'bootstrap/dist/css/bootstrap.css';
 // 导入css样式
 import '@/assets/css/index.css';
+// 原始写法
+// import axios from 'axios';
+// // 让Vue实例中可以直接拿到axios
+// Vue.prototype.$http = axios;
 
+// 插件的使用
+import MyAxios from '@/plugins/myaxios';
+// 注册
+Vue.use(MyAxios);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
