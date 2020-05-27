@@ -31,9 +31,9 @@
 
 <script>
 // 导入axios模块
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "list",
+  name: 'list',
   data() {
     return {
       list: []
@@ -45,7 +45,7 @@ export default {
   methods: {
     loadData() {
       axios
-        .get("http://localhost:3000/heroes")
+        .get('http://localhost:3000/heroes')
         .then(res => {
           if (res.status === 200) {
             this.list = res.data;
