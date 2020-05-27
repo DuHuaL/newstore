@@ -7,19 +7,20 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>名称</th>
-            <th>header</th>
-            <th>header</th>
+            <th>姓名</th>
+            <th>性别</th>
             <th>操作</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1001</td>
-            <td>1001</td>
-            <td>1001</td>
-            <td>1001</td>
-            <td>1001</td>
+          <tr v-for="(item,index) in list" :key="item.id">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.gender }}</td>
+            <td>
+              <a href="#">修改</a>&nbsp;&nbsp;
+              <a href="#">删除</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -28,8 +29,26 @@
 </template>
 
 <script>
+// 导入axios模块
+import axios from 'axios';
 export default {
-  name: 'list'
+  name: 'list',
+  data() {
+    return {
+      list: []
+    };
+  },
+  mounted() {
+    axios.get('http://localhost:3000/heroes')
+      .then((res) => {
+        if (res.status === 200) {
+          this.list = res.data;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 };
 </script>
 
