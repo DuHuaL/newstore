@@ -10,7 +10,7 @@
         <label for="gender">英雄性别</label>
         <input v-model="formData.gender" type="text" class="form-control" id="gender">
       </div>
-      <button type="submit" class="btn btn-success">修改</button>
+      <button type="submit" class="btn btn-success" @click.prevent="handleEdit">修改</button>
     </form>
   </div>
 </template>
@@ -37,6 +37,17 @@ export default {
         .then((res) => {
           if (res.status === 200) {
             this.formData = res.data;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    handleEdit() {
+      axios.patch(`http://localhost:3000/heroes/${this.id}`, this.formData)
+        .then((res) => {
+          if (res.status === 200) {
+            this.$router.push({ name: 'heros' });
           }
         })
         .catch((err) => {
