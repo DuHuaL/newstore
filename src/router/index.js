@@ -8,6 +8,8 @@ import WeaponsList from '@/views/weapons/list';
 import EquipsList from '@/views/equips/list';
 // 添加英雄
 import HerosAdd from '@/views/users/add';
+// 修改英雄
+import HerosEdit from '@/views/users/edit';
 Vue.use(Router);
 
 export default new Router({
@@ -17,6 +19,7 @@ export default new Router({
     { name: 'heros', path: '/heros', component: HerosList },
     { name: 'weapons', path: '/weapons', component: WeaponsList },
     { name: 'equips', path: '/equips', component: EquipsList },
-    { name: 'herosAdd', path: '/heros/herosAdd', component: HerosAdd }
+    { name: 'herosAdd', path: '/heros/add', component: HerosAdd },
+    { name: 'herosEdit', path: '/heros/edit/:id', component: HerosEdit }
   ]
 });

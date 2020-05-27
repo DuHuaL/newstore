@@ -19,7 +19,10 @@
             <td>{{ item.name }}</td>
             <td>{{ item.gender }}</td>
             <td>
-              <a href="#">修改</a>&nbsp;&nbsp;
+              <!-- <a href="javascript:void(0)">修改</a> -->
+              <!-- <router-link :to="'/heros/edit/'+item.id"></router-link> -->
+              <router-link :to="{ name: 'herosEdit', params: { id: item.id}}">编辑</router-link>
+              &nbsp;&nbsp;
               <a href="javascript:void(0)" @click.prevent="handleDelete(item.id)">删除</a>
             </td>
           </tr>
