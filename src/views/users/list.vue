@@ -19,7 +19,7 @@
             <td>{{ item.gender }}</td>
             <td>
               <a href="#">修改</a>&nbsp;&nbsp;
-              <a href="#">删除</a>
+              <a href="javascript:void(0)" @click.prevent="handleDelete(item.id)">删除</a>
             </td>
           </tr>
         </tbody>
@@ -30,28 +30,48 @@
 
 <script>
 // 导入axios模块
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'list',
+  name: "list",
   data() {
     return {
       list: []
     };
   },
   mounted() {
-    axios.get('http://localhost:3000/heroes')
-      .then((res) => {
-        if (res.status === 200) {
-          this.list = res.data;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.loadData();
+  },
+  methods: {
+    loadData() {
+      axios
+        .get("http://localhost:3000/heroes")
+        .then(res => {
+          if (res.status === 200) {
+            this.list = res.data;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    handleDelete(id) {
+      if (!confirm('是否删除？')) {
+        return;
+      }
+      axios
+        .delete(`http://localhost:3000/heroes/${id}`)
+        .then(res => {
+          if (res.status === 200) {
+            this.loadData();
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 </script>
 
 <style>
-
 </style>
